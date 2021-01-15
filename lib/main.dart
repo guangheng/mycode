@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
         textColor: Colors.white);
   }
 
-  Future<void> _askedToLead() async {
+  Future<void> _showDemamd() async {
     await showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -248,7 +248,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.lightGreenAccent,
               ),
             ),
-            onPressed: _askedToLead,
+            onPressed: _showDemamd,
           ),
           TextButton(
             child: const Text(
