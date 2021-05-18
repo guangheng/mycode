@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/down.dart';
+import 'package:hello_world/gravity.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:hello_world/secondPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +19,11 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: '豆瓣'),
+      routes: {
+        'secondPage': (BuildContext context) => SecondPage(),
+        "down": (_) => Down(),
+        "gravity": (_) => PhysicsAnimation(),
+      },
     );
   }
 }
@@ -53,9 +61,24 @@ class _MyHomePageState extends State<MyHomePage> {
     //     textColor: Colors.white);
   }
   void gotoSecondPage(String e) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) {
-      return SecondPage(e);
-    }));
+    Navigator.pushNamed(context, "secondPage", arguments: {});
+    // Navigator.push(context, MaterialPageRoute(builder: (_) {
+    //   return SecondPage(e);
+    // }));
+  }
+
+  void goDown(String e) {
+    Navigator.pushNamed(context, "down", arguments: {});
+    // Navigator.push(context, MaterialPageRoute(builder: (_) {
+    //   return SecondPage(e);
+    // }));
+  }
+
+  void goGravity() {
+    Navigator.pushNamed(context, "gravity", arguments: {});
+    // Navigator.push(context, MaterialPageRoute(builder: (_) {
+    //   return SecondPage(e);
+    // }));
   }
 
   void initArrUrl(int count) {
@@ -89,7 +112,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.lightGreenAccent,
               ),
             ),
-            onPressed: showToast,
+            onPressed: () {
+              goDown("");
+            },
           ),
           TextButton(
             child: const Text(
@@ -98,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.pink,
               ),
             ),
-            onPressed: showToast,
+            onPressed: () => gotoSecondPage("111"),
           ),
           TextButton(
             child: const Text(
@@ -107,7 +132,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.yellowAccent,
               ),
             ),
-            onPressed: showToast,
+            onPressed: () {
+              goGravity();
+            },
           ),
           TextButton(
             child: const Text(
@@ -206,26 +233,26 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 // ignore: must_be_immutable
-class SecondPage extends StatelessWidget {
-  var url;
-  SecondPage(String url) {
-    // print(url);
-    this.url = url;
-  }
+// class SecondPage extends StatelessWidget {
+//   var url;
+//   SecondPage(String url) {
+//     // print(url);
+//     this.url = url;
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('查看图片'),
-      ),
-      body: Container(
-        color: Colors.black,
-        child: Center(
-            child: PhotoView(
-          imageProvider: NetworkImage(this.url),
-        )),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('查看图片'),
+//       ),
+//       body: Container(
+//         color: Colors.black,
+//         child: Center(
+//             child: PhotoView(
+//           imageProvider: NetworkImage(this.url),
+//         )),
+//       ),
+//     );
+//   }
+// }
